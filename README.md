@@ -1,8 +1,7 @@
 # Fire Emblem Heroes Database
 
-![Fire Emblem Heroes Logo](https://static.wikia.nocookie.net/fireemblem/images/6/69/FEH_Logo.png/revision/latest?cb=20170130200250)
-
-A PostgreSQL database for tracking Fire Emblem Heroes game data with comprehensive relationships between heroes, skills, weapons, and their effects.
+This is a personal proyect to learn and experiment how to use SQL and build databases. My idea is to create a PostgreSQL database for tracking Fire Emblem Heroes game data 
+with comprehensive relationships between heroes, skills, weapons, and their effects. My aim is to create something that could be usefull to the community.
 
 ## Features
 
