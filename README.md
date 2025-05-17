@@ -1,32 +1,61 @@
 # Fire Emblem Heroes Database
 
-A custom PostgreSQL database for Fire Emblem Heroes, focused on unique weapons, skills, and their effects, restrictions, and inheritance paths.
+![Fire Emblem Heroes Logo](https://static.wikia.nocookie.net/fireemblem/images/6/69/FEH_Logo.png/revision/latest?cb=20170130200250)
 
-This project aims to:
+A PostgreSQL database for tracking Fire Emblem Heroes game data with comprehensive relationships between heroes, skills, weapons, and their effects.
 
-- Provide a searchable structure for skills and weapons by their effects (for example, all skills that apply "Exposure", "Guard", etc.)
+## Features
 
-- Track inheritance rules and unit restrictions for each skill and weapon
+- **Complete Hero Tracking**: Variants, stats, and base kits
+- **Effect Search System**: Find skills/weapons by their effects
+- **Inheritance Modeling**:
+  - Skill prerequisite chains
+  - Movement/weapon type restrictions
+- **Structured Restrictions**: Reusable templates for common limitations
+- **Banner Support**: Organized by release batches
 
-- Include metadata for heroes, such as:
+## Database Schema
 
-    - Weapon type
+### Core Tables
+| Table | Description |
+|-------|-------------|
+| `games` | Fire Emblem series titles (e.g., "Awakening", "Path of Radiance") |
+| `weapons` | Weapon types with stats, effects, and inheritance status |
+| `heroes` | Character data including stats, variants, and base kits |
+| `skills` | Combat abilities with inheritance rules and prerequisites |
+| `status_effects` | Definitions of in-game effects (e.g., "Canto", "Exposure") |
 
-    - Movement type
+### Relationship Tables
+| Table | Purpose |
+|-------|---------|
+| `hero_skill` | Many-to-many hero to skill mapping |
+| `skill_effect` | Links skills to status effects |
+| `skill_prerequisite` | Skill inheritance requirements |
+| `structured_restrictions` | Reusable restriction templates |
+| `*_restriction` | Applies restrictions to weapons/skills |
 
-    - Color
+## Project Structure
 
-    - Hero variant (e.g. Legendary, Brave, Ascended)
+```
+feh-database/
+├── schema/
+│ └── schema.sql # Complete database schema definition
+├── data/
+│ ├── games.sql # Series title data
+│ ├── weapons.sql # Weapon definitions
+│ ├── skills.sql # Skill definitions
+│ ├── status_effects.sql # Effect explanations
+│ └── banners/ # Hero release batches
+│   └── fallen_2025.sql # Example banner data
+└── seed_all.sql # Master data loading script
+```
 
-    - Release date
+## Usage
 
-The goal is to create a useful tool for the community, and a solid example of using relational databases for game data modeling.
+```bash
+# Initialize database (PostgreSQL required)
+createdb feh_db
+psql feh_db -f seed_all.sql
 
-Built With:
-
-- PostgreSQL
-
-- SQL
-
-- Data sourced manually from Game8 and Fire Emblem Wiki
-
+# Sample query: Find all armor-effective weapons
+SELECT name FROM weapons WHERE effect LIKE '%effective against armor%';
