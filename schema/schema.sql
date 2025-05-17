@@ -49,9 +49,10 @@ DROP TABLE IF EXISTS heroes CASCADE;
 -- Drop the ENUM types if they are being redefined
 DROP TYPE IF EXISTS movement_enum CASCADE;
 DROP TYPE IF EXISTS color_enum CASCADE;
+DROP TYPE IF EXISTS stat_variation CASCADE;
 
 -- Define movement types allowed for heroes
-CREATE TYPE movement_enum AS ENUM ('INFANTRY', 'FLIER', 'CAVALRY', 'ARMORED');
+CREATE TYPE movement_enum AS ENUM ('INFANTRY', 'FLYING', 'CAVALRY', 'ARMORED');
 
 -- Define color types allowed for heroes
 CREATE TYPE color_enum AS ENUM ('Red', 'Blue', 'Green', 'Colorless');
@@ -173,6 +174,17 @@ CREATE TABLE skill_prerequisite (
     PRIMARY KEY (skill_id, prerequisite_skill_id)
 );
 
+
+-- TABLE: WEAPON-EFFECT
+
+-- Drop if you're re-running
+DROP TABLE IF EXISTS weapon_effect CASCADE;
+
+CREATE TABLE weapon_effect (
+    weapon_id INTEGER REFERENCES weapons(weapon_id) ON DELETE CASCADE,
+    effect_id INTEGER REFERENCES status_effects(effect_id) ON DELETE CASCADE,
+    PRIMARY KEY (weapon_id, effect_id)
+);
 
 
 -- TABLE: STRUCURED-RESTRICTIONS

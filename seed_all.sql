@@ -1,4 +1,4 @@
-    -- Load the full schema
+-- Load the full schema
 \i schema/schema.sql
 
 -- Load core static data that rarely changes
@@ -7,6 +7,7 @@
 \i data/skills.sql
 \i data/status_effects.sql
 \i data/skill_effect.sql
+\i data/weapon_effect.sql
 \i data/skill_prerequisite.sql
 \i data/structured_restrictions.sql
 \i data/skill_restrictions.sql

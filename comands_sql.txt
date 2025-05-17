@@ -1,0 +1,8 @@
+- Go to the folder where I have the repo on my local computer in the terminal and then run:
+
+psql -U postgres -d feh_database -> this runs the database feh_database under the user postgres
+
+
+- If by any chance the database is not yet created, in the SQL Shell run:
+
+CREATE DATABASE feh_database;
