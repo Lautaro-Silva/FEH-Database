@@ -1,6 +1,7 @@
 # Fire Emblem Heroes Database
 
-A comprehensive PostgreSQL database for tracking Fire Emblem Heroes game data with complete relationships between heroes, skills, weapons, and their effects. Designed to be useful for both players and developers.
+This is a personal proyect to learn and experiment how to use SQL and build databases. My idea is to create a PostgreSQL database for tracking Fire Emblem Heroes game data 
+with comprehensive relationships between heroes, skills, weapons, and their effects. My aim is to create something that could be usefull to the community and is used by others.
 
 ## Features
 
@@ -9,8 +10,7 @@ A comprehensive PostgreSQL database for tracking Fire Emblem Heroes game data wi
 - **Precise Inheritance Modeling**:
   - Skill prerequisite chains
   - Movement/weapon type restrictions
-  - Color and armor type limitations
-- **Effect System**: 40+ status effects with complete descriptions
+- **Effect System**: 40+ status effects with complete descriptions (as of the latetest update)
 - **Modern Skill Tracking**: Supports all skill types (A/B/C/Special/Assist/Echo)
 
 ## Database Schema (Enhanced)
@@ -30,10 +30,10 @@ A comprehensive PostgreSQL database for tracking Fire Emblem Heroes game data wi
 | `hero_skill` | Complete base kits for all heroes |
 | `skill_effect` | 60+ skill-to-effect mappings |
 | `weapon_effect` | Weapon effect relationships |
-| `skill_prerequisite` | Skill inheritance chains |
-| `structured_restrictions` | 36 restriction templates |
+| `skill_prerequisite` | Skill inheritance chains | (NOT YET FINISHED)
+| `structured_restrictions` | 36 restriction templates common for skills and weapons |
 | `skill_restriction` | 20+ skill inheritance limitations |
-| `weapon_restriction` | Weapon inheritance rules |
+| `weapon_restriction` | Weapon inheritance limitations |
 
 ## Updated Project Structure
 ```
@@ -41,37 +41,33 @@ feh-database/
 ├── schema/
 │ └── schema.sql # Complete database schema definition
 ├── data/
-│ ├── games.sql # Series title data (15 entries)
+│ ├── games.sql # Series title data (17 entries)
 │ ├── weapons.sql # Weapon definitions (4 sample PRFs)
 │ ├── skills.sql # 50+ skill definitions
 │ ├── status_effects.sql # 40+ effect explanations
 │ ├── skill_effect.sql # Skill-effect relationships
 │ ├── weapon_effect.sql # Weapon-effect relationships
 │ ├── skill_prerequisite.sql
-│ ├── structured_restrictions.sql # 36 templates
+│ ├── structured_restrictions.sql # 36 templates retrictions for all skills and weapons
 │ ├── skill_restrictions.sql
 │ ├── weapon_restrictions.sql
 │ └── banners/
 │ └── fallen_2025.sql # Complete Fallen 2025 banner (4 heroes)
-└── seed_all.sql # Master data loading script```
+└── seed_all.sql # Master data loading script
+```
 
 
 ## Usage Examples
 
 ```bash
-# Initialize database
-createdb feh_db
-psql feh_db -f seed_all.sql
+# Connect to the database and build it
+psql -U postgres -d feh_database
+\i seed_all.sql
 
-# Advanced queries:
+## Example queries:
+
 # Find all armor-effective weapons
 SELECT name FROM weapons WHERE effect LIKE '%effective against armor%';
-
-# Check skill inheritance requirements
-SELECT s.name, p.name AS requires 
-FROM skills s
-JOIN skill_prerequisite sp ON s.skill_id = sp.skill_id
-JOIN skills p ON sp.prerequisite_skill_id = p.skill_id;
 
 # Find all skills that grant Null Follow-Up
 SELECT s.name, s.type 
@@ -81,14 +77,8 @@ JOIN status_effects e ON se.effect_id = e.effect_id
 WHERE e.name = 'Null Follow-Up';
 ```
 
-
-Key changes made:
-1. Added documentation for all new relationship tables
-2. Included specific counts of data items
-3. Added more practical query examples
-4. Organized the structure to show all SQL files
-5. Added roadmap for future development
-6. Highlighted the complete Fallen 2025 banner implementation
-7. Included specific examples of the advanced features
-
-The README now accurately reflects both your current implementation and the depth of data you've modeled.
+## Data Expansion
+- [ ]  Add more banners, starting for aiming to start with 35th Anniversay Banner
+- [ ]  Add the non-final-tier skills to be able to fill the table 'skill_prerequisite'
+- [ ]  Add new category called 'origin' for heroes to denote if they are from main banners, tempest trials, GHB, etc.
+- [ ]  Add the boons and banes for Fallen Banner
