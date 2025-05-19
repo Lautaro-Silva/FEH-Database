@@ -56,6 +56,9 @@ feh-database/
 └── seed_all.sql # Master data loading script
 ```
 
+![Database Schema Diagram](feh_database%20-%20public.png)
+
+*A visual representation of the database schema*
 
 ## Usage Examples
 
@@ -82,4 +85,4 @@ WHERE e.name = 'Null Follow-Up';
 - [ ]  Add more banners, starting for aiming to start with 35th Anniversay Banner
 - [ ]  Add the non-final-tier skills to be able to fill the table 'skill_prerequisite'
 - [x]  Add new category called 'obtain_method' for heroes to denote if they are from main banners, tempest trials, GHB, etc.
-- [ ]  Add the boons and banes for Fallen Banner
+- [x]  Add the boons and banes for Fallen Banner
