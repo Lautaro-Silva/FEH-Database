@@ -77,17 +77,9 @@ JOIN status_effects e ON se.effect_id = e.effect_id
 WHERE e.name = 'Null Follow-Up';
 ```
 
-## Roadmap
-
-- [x] Core schema implementation
-- [x] Fallen 2025 banner
-- [ ] Add 35th Anniversary Banner
-- [ ] Implement full skill inheritance chains
-- [ ] Add hero origin tracking (GHB/TT/etc.)
-- [ ] Web interface for querying
 
 ## Data Expansion
 - [ ]  Add more banners, starting for aiming to start with 35th Anniversay Banner
 - [ ]  Add the non-final-tier skills to be able to fill the table 'skill_prerequisite'
-- [ ]  Add new category called 'origin' for heroes to denote if they are from main banners, tempest trials, GHB, etc.
+- [x]  Add new category called 'obtain_method' for heroes to denote if they are from main banners, tempest trials, GHB, etc.
 - [ ]  Add the boons and banes for Fallen Banner

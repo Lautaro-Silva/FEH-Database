@@ -1,12 +1,12 @@
 -- Hero: Fallen Female Alear (Green Dragon Armored)
 INSERT INTO heroes (
     name, weapon_type, movement_type, color, variant,
-    release_date,
+    obtain_method, release_date,
     hp, atk, spd, def, res
 )
 VALUES (
     'Alear', 'Dragon', 'ARMORED', 'Green', 'Female Fallen',
-    '2025-05-07',
+    'SUMMON', '2025-05-07',
     51, 48, 18, 45, 49
 );
 
@@ -21,15 +21,19 @@ FROM heroes h, skills s
 WHERE h.name = 'Alear' AND h.variant = 'Female Fallen' -- Selecting the hero
 AND s.name IN ('Fell Blast', 'Diluvial Boost', 'Scowling Fighter', 'Higher Ground'); -- Selecting the skills
 
+-- Link F!F!Alear's game
+UPDATE heroes SET game_id = (SELECT game_id FROM games WHERE title = 'Fire Emblem: Engage') -- Selecting the correct game
+WHERE name = 'Alear' AND variant = 'Female Fallen';                      -- Ensure the game is linked to the correct hero
+
 -- Hero: Fallen Male Alear (Red Sword Infantry)
 INSERT INTO heroes (
     name, weapon_type, movement_type, color, variant,
-    release_date,
+    obtain_method, release_date,
     hp, atk, spd, def, res
 )
 VALUES (
     'Alear', 'Sword', 'INFANTRY', 'Red', 'Male Fallen',
-    '2025-05-07',
+    'SUMMON', '2025-05-07',
     40, 46, 47, 35, 31
 );
 
@@ -44,15 +48,19 @@ FROM heroes h, skills s
 WHERE h.name = 'Alear' AND h.variant = 'Male Fallen'
 AND s.name IN ('Gust', 'Bond Breaker', 'S/D Spiked Wall', 'Odd Spd Wave 4');
 
+-- Link M!F!Alear's game
+UPDATE heroes SET game_id = (SELECT game_id FROM games WHERE title = 'Fire Emblem: Engage')
+WHERE name = 'Alear' AND variant = 'Male Fallen';
+
 -- Hero: Rearmed Fallen Dedue (Blue Beast Armored)
 INSERT INTO heroes (
     name, weapon_type, movement_type, color, variant,
-    release_date,
+    obtain_method, release_date,
     hp, atk, spd, def, res
 )
 VALUES (
     'Dedue', 'Beast', 'ARMORED', 'Blue', 'Rearmed Fallen',
-    '2025-05-07',
+    'SUMMON', '2025-05-07',
     49, 49, 17, 49, 43
 );
 
@@ -67,15 +75,19 @@ FROM heroes h, skills s
 WHERE h.name = 'Dedue' AND h.variant = 'Rearmed Fallen'
 AND s.name IN ('Sturdy Beast', 'Atk/Def Fortune', 'Assault Fighter', 'For the True King');
 
+-- Link R!F!Dedue's game
+UPDATE heroes SET game_id = (SELECT game_id FROM games WHERE title = 'Fire Emblem: Three Houses')
+WHERE name = 'Dedue' AND variant = 'Rearmed Fallen';
+
 -- Hero: Fallen Lena (Colorless Staff Infantry)
 INSERT INTO heroes (
     name, weapon_type, movement_type, color, variant,
-    release_date,
+    obtain_method, release_date,
     hp, atk, spd, def, res
 )
 VALUES (
     'Lena', 'Staff', 'INFANTRY', 'Colorless', 'Fallen',
-    '2025-05-07',
+    'SUMMON', '2025-05-07',
     45, 48, 27, 19, 49
 );
 
@@ -89,3 +101,7 @@ SELECT h.hero_id, s.skill_id
 FROM heroes h, skills s
 WHERE h.name = 'Lena' AND h.variant = 'Fallen'
 AND s.name IN ('Magic Shield+', 'Holy Pressure', 'Atk/Res Tidings', 'Resonance 4', 'Pulse Up: Ploy');
+
+-- Link F!Lena's game
+UPDATE heroes SET game_id = (SELECT game_id FROM games WHERE title = 'Fire Emblem: Shadow Dragon')
+WHERE name = 'Lena' AND variant = 'Fallen';  

@@ -4,7 +4,7 @@ INSERT INTO skills (
 VALUES (
     'Fell Blast', 'Special',
     'Cooldown = 3. Boosts damage by 50% of Res. ' ||
-    'If HP more than 25% at phase start, grants [Fell Spirit] to self and allies within 2 spaces. ' ||
+    'If HP >= 25% at phase start, grants [Fell Spirit] to self and allies within 2 spaces. ' ||
     'If foe initiates, or if Special is ready/triggered, reduces next hit by 40%. Unit can counter at any range. ' ||
     '[Fell Spirit]: inflicts -4 to all stats, neutralizes counterattack denial, allows damage reduction from Specials to trigger twice (once per combat), and inflicts additional -2 stats when engaged.',
     500,
@@ -16,7 +16,7 @@ INSERT INTO skills (
     name, type, effect, sp_cost, inheritable)
 VALUES (
     'Diluvial Boost', 'A',
-    'Grants HP+5. If foe initiates or HP more than 50%, grants Atk/Def/Res+9 during combat and restores 7 HP after.',
+    'Grants HP+5. If foe initiates or HP >= 50%, grants Atk/Def/Res+9 during combat and restores 7 HP after.',
     300,
     TRUE
 );
@@ -25,7 +25,7 @@ VALUES (
 INSERT INTO skills (name, type, effect, sp_cost, inheritable)
 VALUES (
     'Scowling Fighter', 'B',
-    'If foe initiates or HP more than 25%, inflicts Atk/Res-4, deals +20% Res, reduces damage by 20% Res, grants Special charge +1 per attack. ' ||
+    'If foe initiates or HP >= 25%, inflicts Atk/Res-4, deals +20% Res, reduces damage by 20% Res, grants Special charge +1 per attack. ' ||
     'If foe''s Special triggers and Res check passes, inflicts Special cooldown +1 on foe (pre-combat).',
     300,
     TRUE
@@ -47,7 +47,7 @@ INSERT INTO skills (
 VALUES (
     'Gust', 'Special',
     'Cooldown = 3. Boosts Special damage by 50% of unit''s Spd. ' ||
-    'If unit''s or foe''s Special is ready or triggered before/during combat, and if unit''s Spd more than foe''s Spd - 4, ' ||
+    'If unit''s or foe''s Special is ready or triggered before/during combat, and if unit''s Spd >= foe''s Spd - 4, ' ||
     'reduces damage from foe''s next attack during combat by 40% (once per combat; excludes area-of-effect Specials).',
     500,
     TRUE
@@ -58,9 +58,9 @@ INSERT INTO skills (
     name, type, effect, sp_cost, inheritable)
 VALUES (
     'Bond Breaker', 'A',
-    'Unit can counterattack regardless of range. At start of phase, if HP more than 25%, grants [Fell Spirit] to unit and allies within 2 spaces for 1 turn ' ||
+    'Unit can counterattack regardless of range. At start of phase, if HP >= 25%, grants [Fell Spirit] to unit and allies within 2 spaces for 1 turn ' ||
     'and inflicts Atk/Spd-7 and [Schism] on nearest foes and nearby foes. ' ||
-    'If foe initiates or unit''s HP more than 25%, grants Atk/Spd/Def/Res+9 and reduces damage from first hit by 7. ' ||
+    'If foe initiates or unit''s HP >= 25%, grants Atk/Spd/Def/Res+9 and reduces damage from first hit by 7. ' ||
     'If HP > 1 and foe would KO unit, unit survives with 1 HP (once per combat; excludes non-Special Miracle-like effects). ' ||
     '[Fell Spirit]: inflicts -4 to all stats, neutralizes counterattack denial, allows once-per-combat damage reduction effects from Special to trigger twice, ' ||
     'and inflicts an additional -2 to all stats when engaged (for 1 turn).',
@@ -86,7 +86,7 @@ INSERT INTO skills (
 VALUES (
     'Odd Spd Wave 4', 'C',
     'At start of turn, grants Spd+6 to unit and allies within 2 spaces for 1 turn. ' ||
-    'If unit''s Spd more than foe''s Spd - 5, neutralizes guaranteed follow-ups by foe and follow-up denial on unit during combat. ' ||
+    'If unit''s Spd >= foe''s Spd - 5, neutralizes guaranteed follow-ups by foe and follow-up denial on unit during combat. ' ||
     'On odd-numbered turns, grants Spd+6 to unit during combat.',
     300,
     TRUE
@@ -98,7 +98,7 @@ INSERT INTO skills (
 VALUES (
     'Sturdy Beast', 'Special',
     'Cooldown = 3. Boosts damage by 50% of Def if transformed (40% if not). ' ||
-    'If unit''s or foe''s Special is ready/triggered, and unit is transformed or has Def more than foe''s Def - 4, reduces next hit by 40% (once per combat; excluding AoE Specials).',
+    'If unit''s or foe''s Special is ready/triggered, and unit is transformed or has Def >= foe''s Def - 4, reduces next hit by 40% (once per combat; excluding AoE Specials).',
     500,
     TRUE
 );

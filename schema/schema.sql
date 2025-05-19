@@ -50,6 +50,7 @@ DROP TABLE IF EXISTS heroes CASCADE;
 DROP TYPE IF EXISTS movement_enum CASCADE;
 DROP TYPE IF EXISTS color_enum CASCADE;
 DROP TYPE IF EXISTS stat_variation CASCADE;
+DROP TYPE IF EXISTS obtain_enum CASCADE;
 
 -- Define movement types allowed for heroes
 CREATE TYPE movement_enum AS ENUM ('INFANTRY', 'FLYING', 'CAVALRY', 'ARMORED');
@@ -60,24 +61,28 @@ CREATE TYPE color_enum AS ENUM ('Red', 'Blue', 'Green', 'Colorless');
 -- Define stat variation types for heroes (e.g., boon, bane, none)
 CREATE TYPE stat_variation AS ENUM ('BOON', 'BANE', 'NONE');
 
+-- Define obtantion methods for heroes (e.g., GHB, TT, Summoning, Grail Shop)
+CREATE TYPE obtain_enum AS ENUM ('SUMMON', 'GHB', 'TT', 'GRAIL SHOP');
+
 -- Table for all heroes in FEH
 CREATE TABLE heroes (
-    hero_id SERIAL PRIMARY KEY,                          -- Unique ID for each hero
-    name TEXT NOT NULL,                                  -- Hero name, must be filled
-    weapon_type weapon_enum NOT NULL,                    -- Weapon type, constrained by weapon_enum
-    movement_type movement_enum NOT NULL,                -- Movement type, constrained by movement_enum
-    color color_enum NOT NULL,                           -- Color, constrained by color_enum
-    variant TEXT,                                        -- E.g., Brave, Legendary, Ascended
-    release_date DATE,                                   -- Date the hero was released
-    weapon_id INTEGER REFERENCES weapons(weapon_id),     -- Foreign key linking to the weapon used by this hero
-    game_id INTEGER REFERENCES games(game_id),           -- Foreign key linking to the game of origin
+    hero_id SERIAL PRIMARY KEY,                                   -- Unique ID for each hero
+    name TEXT NOT NULL,                                           -- Hero name, must be filled
+    weapon_type weapon_enum NOT NULL,                             -- Weapon type, constrained by weapon_enum
+    movement_type movement_enum NOT NULL,                         -- Movement type, constrained by movement_enum
+    color color_enum NOT NULL,                                    -- Color, constrained by color_enum
+    variant TEXT,                                                 -- E.g., Brave, Legendary, Ascended
+    obtain_method obtain_enum NOT NULL,                           -- How to obtain the hero, constrained by obtain_enum
+    release_date DATE,                                            -- Date the hero was released
+    weapon_id INTEGER REFERENCES weapons(weapon_id) NOT NULL,     -- Foreign key linking to the weapon used by this hero
+    game_id INTEGER REFERENCES games(game_id) NOT NULL,           -- Foreign key linking to the game of origin
     
     -- Base stats
-    hp INTEGER CHECK (hp >= 0),
-    atk INTEGER CHECK (atk >= 0),
-    spd INTEGER CHECK (spd >= 0),
-    def INTEGER CHECK (def >= 0),
-    res INTEGER CHECK (res >= 0),
+    hp INTEGER CHECK (hp >= 0) NOT NULL,
+    atk INTEGER CHECK (atk >= 0) NOT NULL,
+    spd INTEGER CHECK (spd >= 0) NOT NULL,
+    def INTEGER CHECK (def >= 0) NOT NULL,
+    res INTEGER CHECK (res >= 0) NOT NULL,
 
     -- Boon/Bane for each stat
     hp_variation stat_variation DEFAULT 'NONE',
