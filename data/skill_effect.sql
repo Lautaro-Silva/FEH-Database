@@ -88,3 +88,31 @@ SELECT s.skill_id, e.effect_id
 FROM skills s, status_effects e
 WHERE s.name = 'Pulse Up: Ploy' 
 AND e.name IN ('Preempt Pulse', 'Ploy', 'Exposure');
+
+-- Lull Spd/Def 3 effects
+INSERT INTO skill_effect (skill_id, effect_id)
+SELECT s.skill_id, e.effect_id
+FROM skills s, status_effects e
+WHERE s.name = 'Lull Spd/Def 3'
+AND e.name IN ('Null Bonuses');
+
+-- New Opening effects
+INSERT INTO skill_effect (skill_id, effect_id)
+SELECT s.skill_id, e.effect_id
+FROM skills s, status_effects e
+WHERE s.name = 'New Opening'
+AND e.name IN ('Tempo');
+
+-- Bestial Agility effects
+INSERT INTO skill_effect (skill_id, effect_id)
+SELECT s.skill_id, e.effect_id
+FROM skills s, status_effects e
+WHERE s.name = 'Bestial Agility'
+AND e.name IN ('Canto', 'Null Follow-Up');
+
+-- Preempt Screech effects
+INSERT INTO skill_effect (skill_id, effect_id)
+SELECT s.skill_id, e.effect_id
+FROM skills s, status_effects e
+WHERE s.name = 'Preempt Screech'
+AND e.name IN ('Feud', 'Preempt Pulse');

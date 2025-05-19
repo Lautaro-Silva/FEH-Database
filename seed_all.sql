@@ -16,5 +16,6 @@
 -- Now load the banners (heroes + hero-skill mappings)
 -- Always after the core data so references exist
 \i data/banners/fallen_2025.sql
+\i data/banners/35_anniversary.sql
 -- \i data/banners/previous_banner.sql
 -- \i data/banners/next_banner.sql

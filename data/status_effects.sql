@@ -36,8 +36,19 @@ INSERT INTO status_effects (name, description) VALUES
 -- Status: Preempt Pulse
 INSERT INTO status_effects (name, description) VALUES
     ('Preempt Pulse',
-    'Special cooldown -1 before unit''s first attack');
+    'Special cooldown count -1 before unit''s first attack');
 
+
+-- Status: Guard
+INSERT INTO status_effects (name, description) VALUES
+    ('Guard',
+    'Inflicts Special Cooldown Charge -1 on foe');
+
+
+-- Status: Breath
+INSERT INTO status_effects (name, description) VALUES
+    ('Breath',
+    'Grants Special Cooldown Charge +1 per attack');
 
 -- Status: Null Bonuses
 INSERT INTO status_effects (name, description) VALUES
@@ -175,3 +186,23 @@ INSERT INTO status_effects (name, description) VALUES
 INSERT INTO status_effects (name, description) VALUES
     ('Treachery',
     'Grants additional damage = total Bonuses on unit');
+
+-- Status: Undefended
+INSERT INTO status_effects (name, description) VALUES
+    ('Undefended',
+    'Prevent the affected unit from being targeted by [Savior]');
+
+-- Status: Mobility Increase
+INSERT INTO status_effects (name, description) VALUES
+    ('Mobility Increase',
+    'Increases the number of spaces a unit can move by 1');
+
+-- Status: Canto
+INSERT INTO status_effects (name, description) VALUES
+    ('Canto',
+    'Allows the unit to move again after attacking or using a skill');
+
+-- Status: Feud
+INSERT INTO status_effects (name, description) VALUES
+    ('Feud',
+    'Disables all effects granted to the unit by their allies');

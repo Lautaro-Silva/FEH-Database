@@ -1,28 +1,11 @@
--- Diluvial Boost (Armored only - all weapon types)
-INSERT INTO skill_restriction (skill_id, restriction_id)
-SELECT s.skill_id, r.restriction_id
-FROM skills s, structured_restrictions r
-WHERE s.name = 'Diluvial Boost'
-AND r.description IN (
-    'Sword / Armored restriction',
-    'Lance / Armored restriction',
-    'Axe / Armored restriction',
-    'Bow / Armored restriction',
-    'Dagger / Armored restriction',
-    'Tome / Armored restriction',
-    'Staff / Armored restriction',
-    'Beast / Armored restriction',
-    'Dragon / Armored restriction'
-);
-
--- Scowling Fighter (Dragon/Armored only)
+-- Dragon/Armored only
 INSERT INTO skill_restriction (skill_id, restriction_id)
 SELECT s.skill_id, r.restriction_id
 FROM skills s, structured_restrictions r
 WHERE s.name = 'Scowling Fighter'
 AND r.description = 'Dragon / Armored restriction';
 
--- Higher Ground (Beast/Dragon Armored)
+-- Beast/Dragon Armored
 INSERT INTO skill_restriction (skill_id, restriction_id)
 SELECT s.skill_id, r.restriction_id
 FROM skills s, structured_restrictions r
@@ -32,7 +15,7 @@ AND r.description IN (
     'Dragon / Armored restriction'
 );
 
--- Gust (Infantry Sword/Lance/Axe)
+-- Infantry Sword/Lance/Axe
 INSERT INTO skill_restriction (skill_id, restriction_id)
 SELECT s.skill_id, r.restriction_id
 FROM skills s, structured_restrictions r
@@ -43,7 +26,7 @@ AND r.description IN (
     'Axe / Infantry restriction'
 );
 
--- S/D Spiked Wall (Infantry non-ranged)
+-- Infantry non-ranged
 INSERT INTO skill_restriction (skill_id, restriction_id)
 SELECT s.skill_id, r.restriction_id
 FROM skills s, structured_restrictions r
@@ -56,49 +39,71 @@ AND r.description IN (
     'Dragon / Infantry restriction'
 );
 
--- Sturdy Beast & Atk/Def Fortune (Beast - any movement)
+-- Beast - any movement
 INSERT INTO skill_restriction (skill_id, restriction_id)
 SELECT s.skill_id, r.restriction_id
 FROM skills s, structured_restrictions r
-WHERE s.name IN ('Sturdy Beast', 'Atk/Def Fortune')
+WHERE s.name IN (
+    'Sturdy Beast', 
+    'Atk/Def Fortune'
+    )
 AND r.description LIKE 'Beast%';
 
--- Atk/Def Fortune (Beast only)
+-- Armored only - any movement
 INSERT INTO skill_restriction (skill_id, restriction_id)
 SELECT s.skill_id, r.restriction_id
 FROM skills s, structured_restrictions r
-WHERE s.name = 'Atk/Def Fortune'
-AND r.description IN (
-    'Beast / Infantry restriction',
-    'Beast / Armored restriction',
-    'Beast / Cavalry restriction',
-    'Beast / Flying restriction'
-);
-
--- Assault Fighter (Armored only)
-INSERT INTO skill_restriction (skill_id, restriction_id)
-SELECT s.skill_id, r.restriction_id
-FROM skills s, structured_restrictions r
-WHERE s.name = 'Assault Fighter'
+WHERE s.name IN (
+    'Assault Fighter', 
+    'Diluvial Boost'
+    )
 AND r.description LIKE '% / Armored restriction';
 
--- Staff skills (Magic Shield+, Holy Pressure, Atk/Res Tidings)
+-- Staff only - any movement
 INSERT INTO skill_restriction (skill_id, restriction_id)
 SELECT s.skill_id, r.restriction_id
 FROM skills s, structured_restrictions r
-WHERE s.name IN ('Magic Shield+', 'Holy Pressure', 'Atk/Res Tidings')
+WHERE s.name IN (
+    'Magic Shield+',
+    'Holy Pressure',
+    'Atk/Res Tidings'
+    )
 AND r.description LIKE 'Staff%';
 
--- Resonance 4 (Tome/Staff - any movement)
+-- Tome/Staff - any movement
 INSERT INTO skill_restriction (skill_id, restriction_id)
 SELECT s.skill_id, r.restriction_id
 FROM skills s, structured_restrictions r
 WHERE s.name = 'Resonance 4'
 AND (r.description LIKE 'Tome%' OR r.description LIKE 'Staff%');
 
--- Pulse Up: Ploy (Infantry only)
+-- Infantry only
 INSERT INTO skill_restriction (skill_id, restriction_id)
 SELECT s.skill_id, r.restriction_id
 FROM skills s, structured_restrictions r
 WHERE s.name = 'Pulse Up: Ploy'
 AND r.description LIKE '% / Infantry restriction';
+
+-- Non staff
+INSERT INTO skill_restriction (skill_id, restriction_id)
+SELECT s.skill_id, r.restriction_id
+FROM skills s, structured_restrictions r
+WHERE s.name = 'Dragon Fang'
+AND r.description NOT LIKE 'Staff%';
+
+-- No Restrictions
+INSERT INTO skill_restriction (skill_id, restriction_id)
+SELECT s.skill_id, r.restriction_id
+FROM skills s, structured_restrictions r
+WHERE s.name = 'Odd Spd Wave 4'
+AND r.description = 'Unrestricted: all weapon and movement types allowed.';
+
+-- Infantry/Cavalry only
+INSERT INTO skill_restriction (skill_id, restriction_id)
+SELECT s.skill_id, r.restriction_id
+FROM skills s, structured_restrictions r
+WHERE s.name IN (
+    'Lull Spd/Def 3', 
+    'Rouse Atk/Spd 3'
+    )
+AND (r.description LIKE '% / Infantry restriction' OR r.description LIKE '% / Cavalry restriction');

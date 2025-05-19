@@ -108,7 +108,7 @@ INSERT INTO skills (
     name, type, effect, sp_cost, inheritable)
 VALUES (
     'Atk/Def Fortune', 'A',
-    'Improves transformation condition: also triggers if unit is within 2 spaces of beast/dragon ally or has ≤2 adjacent non-beast/dragon allies. ' ||
+    'Improves transformation condition: also triggers if unit is within 2 spaces of beast/dragon ally or has <=2 adjacent non-beast/dragon allies. ' ||
     'In Aether Raids (defense), transforms at enemy turn 1 if condition met. ' ||
     'If transformed or foe initiates, grants Atk/Def+8, neutralizes foe''s Atk/Def bonuses, and restores 7 HP after combat.',
     300,
@@ -191,6 +191,91 @@ VALUES (
     'Pulse Up: Ploy', 'C',
     'At turn start, grants Special cooldown -1. ' ||
     'At start of player/enemy phase, if foes within 3 rows/columns have Res < unit''s Res+5, inflicts [Ploy] and [Exposure] on them through their next actions.',
+    300,
+    TRUE
+);
+
+-- Special: Dragon Fang
+INSERT INTO skills (
+    name, type, effect, sp_cost, inheritable)
+VALUES (
+    'Dragon Fang', 'Special',
+    'Cooldown = 4. Boost Atk by 50%.',
+    200,
+    TRUE
+);
+
+-- B Skill: Lull Spd/Def 3
+INSERT INTO skills (
+    name, type, effect, sp_cost, inheritable)
+VALUES (
+    'Lull Spd/Def 3', 'B',
+    'Inflicts Spd/Def-3 on foe and neutralizes foe''s bonuses to Spd/Def (from skills like Fortify, Rally, etc.) during combat.',
+    240,
+    TRUE
+);
+
+-- C Skill: Rouse Atk/Spd 3
+INSERT INTO skills (
+    name, type, effect, sp_cost, inheritable)
+VALUES (
+    'Rouse Atk/Spd 3', 'C',
+    'At start of turn, if unit is not adjacent to an ally, grants Atk/Spd+6 for 1 turn.',
+    240,
+    TRUE
+);
+
+-- Special: Nimble Beast
+INSERT INTO skills (
+    name, type, effect, sp_cost, inheritable)
+VALUES (
+    'Nimble Beast', 'Special',
+    'Cooldown = 3. Boosts damage by X% of unit''s Spd when Special triggers (if transformed, X = 50; otherwise, X = 40). ' ||
+    'If both of the following conditions are met, reduces damage from foe''s next attack by 40% during combat: ' ||
+    '- Unit''s or foe''s Special is ready, or unit''s or foe''s Special triggered before or during this combat. ' ||
+    '- Unit is transformed or unit''s Spd >= foe''s Spd-4. (Once per combat; excluding area-of-effect Specials).',
+    500,
+    TRUE
+);
+
+-- A Skill: New Opening
+INSERT INTO skills (
+    name, type, effect, sp_cost, inheritable)
+VALUES (
+    'New Opening', 'A',
+    'If unit can transform, transformation effects gain "if unit is within 2 spaces of a beast or dragon ally, ' ||
+    'or if number of adjacent allies other than beast or dragon allies <= 2" as a trigger condition (in addition to existing conditions). ' ||
+    'If defending in Aether Raids, at the start of enemy turn 1, if conditions for transforming are met, unit transforms. ' ||
+    'If unit is transformed or if foe''s HP >= 75% at start of combat, grants Atk/Spd/Def/Res+9 to unit, ' ||
+    'neutralizes effects that inflict "Special cooldown charge -X" on unit, unit deals +X damage (excluding area-of-effect Specials), ' ||
+    'reduces damage from foe''s first attack by X during combat ("first attack" normally means only the first strike; ' ||
+    'for effects that grant "unit attacks twice," it means the first and second strikes), reduces damage from foe''s Specials ' ||
+    'by an additional X (excluding area-of-effect Specials; X = number of spaces from start position to end position of whoever ' ||
+    'initiated combat x 4; max 12), and restores 7 HP to unit after combat.',
+    300,
+    FALSE
+);
+
+-- B Skill: Beastial Agility
+INSERT INTO skills (
+    name, type, effect, sp_cost, inheritable)
+VALUES (
+    'Bestial Agility', 'B',
+    'Enables [Canto (Rem. +1; Min 2)] while transformed. If unit is transformed or unit''s HP >= 25% at start of combat, ' ||
+    'inflicts Spd/Def-4 on foe and deals damage = 20% of the greater of unit''s Spd or Def (excluding area-of-effect Specials), ' ||
+    'and also, if unit''s Spd > foe''s Spd, neutralizes effects that guarantee foe''s follow-up attacks and ' ||
+    'effects that prevent unit''s follow-up attacks during combat.',
+    300,
+    TRUE
+);
+
+-- C Skill: Preempt Screech
+INSERT INTO skills (
+    name, type, effect, sp_cost, inheritable)
+VALUES (
+    'Preempt Screech', 'C',
+    'Inflicts Spd/Def-4 on foe, disables skills of all foes, excluding foe in combat, and grants Special cooldown count-1 ' ||
+    'to unit before unit''s first attack during combat.',
     300,
     TRUE
 );

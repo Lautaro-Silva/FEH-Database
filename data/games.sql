@@ -11,7 +11,7 @@ INSERT INTO games (title, abbreviation) VALUES
 ('Fire Emblem: Radiant Dawn', 'FE10'),
 ('Fire Emblem: Awakening', 'FE13'),
 ('Fire Emblem: Fates', 'FE14'),
-('Fire Emblem: Three  Houses', 'FE16'),
+('Fire Emblem: Three Houses', 'FE16'),
 ('Fire Emblem: Engage', 'FE17'),
 ('Fire Emblem Heroes', 'FEH')
 ON CONFLICT DO NOTHING;

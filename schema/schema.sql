@@ -62,7 +62,7 @@ CREATE TYPE color_enum AS ENUM ('Red', 'Blue', 'Green', 'Colorless');
 CREATE TYPE stat_variation AS ENUM ('BOON', 'BANE', 'NONE');
 
 -- Define obtantion methods for heroes (e.g., GHB, TT, Summoning, Grail Shop)
-CREATE TYPE obtain_enum AS ENUM ('SUMMON', 'GHB', 'TT', 'GRAIL SHOP');
+CREATE TYPE obtain_enum AS ENUM ('SUMMON 5 STAR', 'GHB', 'TT', 'SUMMON DEMOTE', 'FREE BOOK');
 
 -- Table for all heroes in FEH
 CREATE TABLE heroes (
@@ -74,8 +74,8 @@ CREATE TABLE heroes (
     variant TEXT,                                                 -- E.g., Brave, Legendary, Ascended
     obtain_method obtain_enum NOT NULL,                           -- How to obtain the hero, constrained by obtain_enum
     release_date DATE,                                            -- Date the hero was released
-    weapon_id INTEGER REFERENCES weapons(weapon_id) NOT NULL,     -- Foreign key linking to the weapon used by this hero
-    game_id INTEGER REFERENCES games(game_id) NOT NULL,           -- Foreign key linking to the game of origin
+    weapon_id INTEGER REFERENCES weapons(weapon_id),     -- Foreign key linking to the weapon used by this hero
+    game_id INTEGER REFERENCES games(game_id),           -- Foreign key linking to the game of origin
     
     -- Base stats
     hp INTEGER CHECK (hp >= 0) NOT NULL,

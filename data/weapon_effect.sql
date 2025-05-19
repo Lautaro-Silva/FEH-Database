@@ -27,3 +27,17 @@ SELECT w.weapon_id, e.effect_id
 FROM weapons w, status_effects e
 WHERE w.name = 'Martyr''s Staff'
 AND e.name IN ('Slaying -1', 'Wrathful Staff', 'Bonus Doubler', 'Null Penalties', 'Guaranteed Follow-Up', 'Miracle');
+
+-- Weapon: Iron Hreiomarr
+INSERT INTO weapon_effect (weapon_id, effect_id)
+SELECT w.weapon_id, e.effect_id
+FROM weapons w, status_effects e
+WHERE w.name = 'Iron Hreiomarr'
+AND e.name IN ('Guard', 'Guaranteed Follow-Up', 'Canto');
+
+-- Weapon: Jaws of Closure
+INSERT INTO weapon_effect (weapon_id, effect_id)
+SELECT w.weapon_id, e.effect_id
+FROM weapons w, status_effects e
+WHERE w.name = 'Jaws of Closure'
+AND e.name IN ('Slaying -1', 'Undefended', 'Mobility Increase', 'Canto');
